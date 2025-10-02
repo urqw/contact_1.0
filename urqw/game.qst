@@ -176,8 +176,7 @@ cls
 instr Loc=kotel
 if par=0 then pln   Это котельная. Труба перебита и все котельная в густом обжигающем паре. & health=health-10
 if par=1 then pln   Это котельная. Труба перебита, но так как ты перекрыл вентиль, то тебя больше не обжигает паром.
-if par=1 then kotpist=1
-if kotpist=1 then btn kotpist1,Взять пистолет. 
+if kotpist=0 and par=1 then btn kotpist1,Взять пистолет. 
 btn D1,Выйти на улицу.
 btn kotel2,Идти дальше.
 end
