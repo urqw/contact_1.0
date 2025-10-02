@@ -1,0 +1,1649 @@
+:kontakt
+cls
+invkill
+perkill
+Style_BackColor=1
+style_dos_textcolor=15
+
+health=100
+bronik=0
+
+myweapon=0
+weapon1=0
+weapon2=0
+weapon3=0
+weapon4=0
+weapon5=0
+patron3=0
+patron4=0
+patron5=0
+magazin3-0
+magazin4=0
+magazin5=0
+
+
+aptechka=0
+spray=0
+bloknot=10
+goto start
+end
+
+;===========================================================================================================================================================
+
+:start
+cls
+pln Контакт 1.0. Вторжение.
+pln #/$
+pln #/$
+pln #/$
+style_dos_textcolor=10
+pln #/$
+pln          []  []  [][]  []  [] [][][]  [][] []  [] [][][]
+pln          []  [] []  [] []  []   []   [] [] []  []   []
+pln          [] []  []  [] []  []   []  []  [] [] []    []
+pln          [][]   []  [] [][][]   []  [][][] [][]     []
+pln          [] []  []  [] []  []   []  []  [] [] []    []
+pln          []  [] []  [] []  []   []  []  [] []  []   []
+pln          []  []  [][]  []  []   []  []  [] []  []   []
+
+style_dos_textcolor=15
+btn game,Новая игра.
+btn about,Описание.
+btn help,Помощь.
+btn avtor,Автор.
+btn blag,Благодарность.
+end
+
+:about
+cls
+pln   Не далекое будущее. Или близкое прошлое... Но однажды произошел контакт. Корабли пришельцев прилетели на Землю. Явно, что намерения их были совсем не дружелюбными...
+pln   Нам придется играть в роли простого солдата секретной части. Несколько классов монстров. Оружие на любой вкус. Загадки и многое другое.
+btn start,В главное меню
+end
+
+:help
+cls
+pln Не забывайте пользоваться инвентарем (Вызвать инвентарь можно нажав клавишу F6). Что бы вооружиться, перезарядить оружие, осмотреть предмет или карту. Сохраняйтесь при помощи блокнота.
+btn start,В главное меню
+end
+
+:blag
+cls
+pln Огромное спасибо qwerty, за потрясающий бета-тест, энтузиазм, поддержку и дельные советы.
+btn start,В главное меню
+end
+
+
+
+:avtor
+cls
+pln Автор: Chicago1920
+pln Для связи: e-mail: Chicago1920@mail.ru
+pln                        ICQ: 254881271
+btn start,В главное меню
+end
+
+
+
+;===========================================================================================================================================================
+
+:game
+cls
+pln   Когда я начинал служить в армии, я даже не мог представить что такое произойдет. Думаю, что ни один солдат мира, ни в одной армии не думал, что такое возможно. Но это оказалось реальностью...
+btn game2,Далее.
+end
+
+:game2
+cls
+pln   Я нес службу в небольшой секретной армейской части. Оператором пункта наблюдения, "дежурный по красной кнопке" , как называли эту должность. Где-то в лесу находились шесть шахт межконтинентальных ракет с ядерными боеголовками.
+btn game3,Далее.
+end
+
+:game3
+cls
+inv+ Здоровье
+pln   Неожиданно с поверхности стали доноситься какие-то взрывы. Звуки стрельбы. Включилась тревога. При этом бункер надежно изолировался. Никто не мог сюда проникнуть из вне. И даже воздух начинал подаваться из специальной установки.
+btn bunker,Осмотреться.
+end
+
+;===========================================================================================================================================================
+
+:bunker
+a1=1
+cls
+instr Loc=bunker
+pln   Секретный военный бункер, где находится легендарная "красная  кнопка", а так же куча другого оборудования. Именно здесь ты находился на своих дежурствах.
+if sirena=0 then pln   В случае тревоги бункер надежно изолировался и включалась система автономного жизнеобеспечения для персонала.
+btn bunker2,Посмотреть запись камеры наблюдения.
+if sirena=0 then btn bunker3,Отключить тревогу.
+if map=0 then btn maps,Взять карту.
+if blok=0 then btn bloks,Взять блокнот.
+if sirena=1 then btn D4,Выйти на улицу.
+end
+
+:maps
+pln Ты берешь карту. Это план расположения всех объектов в части.
+inv+ Карта
+map=1
+btn bunker,Назад.
+end
+
+:bloks
+pln Ты берешь блокнот. 
+inv+ Блокнот
+blok=1
+btn bunker,Назад.
+end
+
+
+:bunker2
+cls
+pln   Прямая трансляция с камеры наружного видеонаблюдения. Видны пожары, какие то взрывы. Раненные и умирающие люди и...
+pln Ты готов поклясться что заметил неопознанные летающий объект в форме блюдца!
+btn bunker,Отойти.
+end
+
+:bunker3
+cls
+pln   Ты отключаешь сигнализацию тревоги. Теперь из бункера можно будет выбраться. Нужно бы связаться с командованием в штабе, что бы понять что случилось.
+sirena=1
+btn bunker,Отойти.
+end
+
+:prohod
+a2=1
+cls
+instr Loc=prohod
+pln   Проходная. В связи с тревогой ворота были автоматически закрыты. Теперь здесь не пройти. Но небольшая часть ворота отогнута в сторону. Человеку конечно не пролезть, но собака вполне могла бы здесь протиснуться.
+if prohdrob=0 then btn prohdrob1,Взять дробовик.
+btn A2,Выйти на улицу.
+end
+
+:prohdrob1
+pln Ты находишь дробовик.
+weapon5=1
+patron5=2
+magazin5=10
+prohdrob=1
+inv+ Дробовик(16мм)
+inv+ 10,Патроны_16мм
+btn prohod,Назад.
+end
+
+:kotel
+a3=1
+cls
+instr Loc=kotel
+if par=0 then pln   Это котельная. Труба перебита и все котельная в густом обжигающем паре. & health=health-10
+if par=1 then pln   Это котельная. Труба перебита, но так как ты перекрыл вентиль, то тебя больше не обжигает паром.
+if par=1 then kotpist=1
+if kotpist=1 then btn kotpist1,Взять пистолет. 
+btn D1,Выйти на улицу.
+btn kotel2,Идти дальше.
+end
+
+:kotpist1
+pln Ты находишь пистолет.
+weapon4=1
+patron4=6
+magazin4=magazin4+30
+kotpist=1
+inv+ Пистолет(11.2мм)
+inv+ 30,Патроны_11.2мм
+btn kotel,Назад.
+end
+
+:kotel2
+cls
+pln   Вспомогательное помещение котельное. Здесь находится несколько одинаковых вентилей.
+btn ventel21,Повернуть вентиль.
+if par=0 then btn ventel22,Повернуть вентиль.
+if par=1 then btn ventel23,Повернуть вентиль.
+btn kotel,Идти в котельную.
+end
+
+:ventel21
+pln   Ты повернул вентель.
+btn kotel2,Отойти.
+end
+
+:ventel22
+pln   Ты повернул вентель.
+par=1
+btn kotel2,Отойти.
+end
+
+:ventel23
+pln   Ты повернул вентель.
+par=0
+btn kotel2,Отойти.
+end
+
+:gospital
+a4=1
+cls
+instr Loc=gospital
+pln   Это небольшой госпиталь. Сюда помещали больных и раненных, хотя обычно он пустовал.
+if gospapt=0 then btn gosapt1,Взять аптечку.
+btn gospital2,Пройти в операционную.
+btn A6,Выйти на улицу.
+end
+
+:gosapt1
+pln Ты находишь аптечку.
+inv+ Аптечка
+aptechka=aptechka+1
+gospapt=1
+btn gospital,Назад.
+end
+
+:gospital2
+cls
+pln   Это операционная. На столе лежит распотрашенный человек. Кишки его вывалились наружу. Незавидная участь...
+if gospnoz=0 then btn gospnoz1,Взять нож.
+btn gospital,Выйти из операционной.
+end
+
+:gospnoz1
+pln Ты вытаскиваешь нож из трупа.
+inv+ Нож
+weapon1=1
+gospnoz=1
+btn gospital2,Назад.
+end
+
+:stol
+a5=1
+cls
+instr Loc=stol
+pln   Столовая. Опрокинутые столы и стулья. Под ногами хрустит разбитая посуда.
+if stolapt=0 then btn stolapt1,Взять аптечку.
+btn C6,Выйти на улицу.
+end
+
+:stolapt1
+pln Ты находишь аптечку.
+inv+ Аптечка
+aptechka=aptechka+1
+stolapt=1
+btn stol,Назад.
+end
+
+:san
+a6=1
+cls
+instr Loc=san
+pln   Это сан узел. Слева находится дверь ведущая в душевые. а справа в туалеты.
+btn san1,В душевые.
+btn san2,В туалет.
+btn C1,Выйти на улицу.
+end
+
+:san1
+cls
+pln   Душевые. С потолка свисают патрубки, из которых не спеша капает вода. Так же, здесь находятся несколько лавочек.
+btn san,Выйти из душевой.
+end
+
+:san2
+cls
+pln   Несмотря на то что это туалет, все здесь так и сверкает чистотой. Заслуга проштрафившихся солдатов.
+if sanpist=0 then btn sanpat1,Взять патроны.
+btn san,Выйти из туалета.
+end
+
+:sanpat1
+Ты находишь патроны к пистолету.
+magazin4=magazin4+30
+sanpist=1
+inv+ 30,Патроны_11.2мм
+btn san2,Назад.
+end
+
+:garazh
+a7=1
+cls
+instr Loc=garazh
+pln   Это гараж. Здесь находятся несколько джипов и БМП.
+if garkan=0 then btn garcist1,Взять канистру.
+btn A4,Выйти на улицу.
+end
+
+:garcist1
+pln Ты находишь пустую канистру.
+inv+ Канистра
+garkan=1
+btn garazh,Назад.
+end
+
+:cist
+a8=1
+cls
+instr Loc=cist
+pln   Перед тобой находятся несколько больших цистерн. Запас горючего для вертолета и техники в гараже.
+if cistgor=0 and garkan=1 then btn cistgor1,Заполнить канистру.
+btn H6,Отойти от цистерн.
+end
+
+:cistgor1
+pln Ты переливаешь немного горючего из цистерны в канистру.
+inv- Канистра
+inv+ Канистра_с_горючим
+cistgor=1
+btn cist,Назад.
+end
+
+:shtab
+a9=1
+cls
+instr Loc=shtab
+pln   Здесь находится штаб командования. На столе разбросаны бумаги, опрокинуты стулья. Видно, что люди в спешке покидали это место.
+if radio=0 then btn shtab2,Включить рацию.
+if shtabrev=0 then btn shtabrev1,Взять револьвер.
+btn B5,Выйти на улицу.
+end
+
+:shtabrev1
+pln В ящике стола ты находишь револьвер.
+weapon3=1
+patron3=6
+magazin3=magazin3+35
+shtabrev=1
+inv+ Револьвер(9мм)
+inv+ 35,Патроны_9мм
+btn shtab,Назад.
+end
+
+:shtab2
+cls
+pln   Ты включаешь рацию и тут же слышишь истошные вопли, сквозь которые кто-то пытается сделать доклад:
+pln "... нападение на Сумеречный город не отбито! Последний бой силами полиции с пришельцами состоялся на вокзале... У нас большие потери! Они применяют какие-то лучи... Люди начинают мутировать... Пришельцы намного превосходят нас в ..."
+pln Запись прервал какой то животный рык.
+pln   Пришельцы напали на Суммеречный город? Пришельцы??? И люди проигрывают битву?! Но в городе живет моя жена и  дочь. Что же случится с ними? Мне нужно попасть в Суммеречный город!
+radio=1
+btn shtab,Выключить рацию.
+end
+
+:shtab3
+cls
+pln Порывшись в ящиках стола ты нашел револьвер.
+btn shtab,Отойти от стола.
+end
+
+:sklad
+a10=1
+cls
+instr Loc=sklad
+pln   Большой армейский склад. Здесь можно найти все, от гранотомета, до ложки. Вот только нужно знать, где искать. Иначе можно потратить очень много времени.
+if skladpat=0 then btn skladpat1,Взять аммуницию.
+btn F5,Выйти на улицу.
+end
+
+:skladpat1
+pln Ты нахаодишь патроны и бронежилет.
+inv+ Патроны_9мм
+inv+ Патроны_16мм
+inv+ Бронежилет
+bronik=100
+patron3=patron3+35
+patron5=patron5+100
+skladpat=1
+btn sklad,Назад
+end
+
+:kazarma
+a11=1
+cls
+instr Loc=kazarma
+pln   Здесь находятся несколько блоков казарм. Одно из них объято огнем, второе полностью разрушено. Не повезло тем, кто там находился.
+btn F3,Ототи от казарм.
+end
+
+:sport
+a12=1
+cls
+instr Loc=sport
+pln   Спортплощака. Небольшое поле, брусья и турники.
+if sportbit=0 then btn sportbit1,Взять биту и спрей.
+btn B3,Уйти со спортплощадки.
+end
+
+:sportbit1
+pln Ты находишь бейсбольную биту и два спрея.
+inv+ Бита
+inv+ 2,Спрей
+weapon2=1
+sportbit=1
+spray=spray+2
+btn sport,Назад.
+end
+
+:ploshadka
+cls
+instr Loc=ploshadka
+pln   Вертолетная площадка. Одиноко стоит с виду не поврежденный, боевой вертолет. Или "вертушка" как мы его называли.
+;if a1=1 and a2=1 and a3=1 and a4=1 and a5=1 and a6=1 and a7=1 and a8=1 and a9=1 and a10=1 and a11=1 and a12=1 then btn vert,Сесть в вертолет.
+btn vert,Сесть в вертолет.
+if cistgor=1 then btn gas,Заправить вертолет.
+btn H1,Уйти с вертолетной площадки.
+end
+
+:gas
+pln Ты заправляешь вертолет горючим.
+zapravil=1
+inv- Канистра_с_горючим
+btn ploshadka,Назад.
+end
+
+:vert
+cls
+instr Loc=vert
+pln Ты сидишь за штурвалом вертолета. Высший пилотаж ты конечно же не покажешь, но долететь из пункта А в пункт Б сможешь.
+if zapravil=0 then pln Датчик горючего на нуле.
+if zapravil=1 then pln Вертолет заправлен и готов к полету.
+if zapravil=0 then btn ploshadka,Выйти из вертолета.
+if zapravil=1 then btn poehali,Взлететь.
+end
+
+:poehali
+cls
+pln   Ты аккуратно поднимаешь вертолет в воздух и направляешь в сторону Суммеречного города. У тебя там остались жена и дочь, которые возможно погибли. С содроганием подумав об этом, ты увеличиваешь скорость.
+btn  poehali2,Далее.
+end
+
+:poehali2
+cls
+pln   До города оставалось лететь минут пятнадцать, когда раздался противный сигнал аварийной тревоги и лампочки замигали красным светом. Вертолет по спирали круто пошел вниз...
+pln   Ты упорно дергал рычаги пытаясь вывести машину из крена. Причем ты даже не понимал, что сделал не так и из-за чего вертолет стал падать.
+btn  poehali3,Далее.
+end
+
+:poehali3
+cls
+pln   Земля стремительно приближалась, когда ты обо что-то ударился головой и картинка перед глазами приобрела богровые оттенки. Далеше была только пустота...
+btn finish,Конец.
+end
+
+;===========================================================================================================================================================
+
+:A1
+cls
+style_dos_textcolor=15
+pln Квадрат А1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=A1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn A2,Юг.
+btn B1,Восток.
+end
+
+:A2
+cls
+style_dos_textcolor=15
+pln Квадрат А2.
+pln Здесь находится проходная.
+instr Loc=A2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn prohod,Проходная.
+btn A1,Север.
+btn A3,Юг.
+btn B2,Восток.
+end
+
+:A3
+cls
+style_dos_textcolor=15
+pln Квадрат А3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=A3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn A2,Север.
+btn A4,Юг.
+btn B3,Восток.
+end
+
+:A4
+cls
+style_dos_textcolor=15
+pln Квадрат А4.
+pln Здесь находится гараж.
+instr Loc=A4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn garazh,Гараж.
+btn A3,Север.
+btn A5,Юг.
+btn B4,Восток.
+end
+
+:A5
+cls
+style_dos_textcolor=15
+pln Квадрат А5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=A5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn A4,Север.
+btn A6,Юг.
+btn B5,Восток.
+end
+
+:A6
+cls
+style_dos_textcolor=15
+pln Квадрат А6.
+pln Здесь находится госпиталь.
+instr Loc=A6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn gospital,Госпиталь.
+btn A5,Север.
+btn B6,Восток.
+end
+
+:B1
+cls
+style_dos_textcolor=15
+pln Квадрат B1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=B1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn B2,Юг.
+btn A1,Запад.
+btn C1,Восток.
+end
+
+:B2
+cls
+style_dos_textcolor=15
+pln Квадрат B2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=B2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn B1,Север.
+btn B3,Юг.
+btn A2,Запад.
+btn C2,Восток.
+end
+
+:B3
+cls
+style_dos_textcolor=15
+pln Квадрат B3.
+pln Здесь находится спортивная площадка.
+instr Loc=B3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn sport,Спортплощадка.
+btn B2,Север.
+btn B4,Юг.
+btn A3,Запад.
+btn C3,Восток.
+end
+
+:B4
+cls
+style_dos_textcolor=15
+pln Квадрат B4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=B4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn B3,Север.
+btn B5,Юг.
+btn A4,Запад.
+btn C4,Восток.
+end
+
+:B5
+cls
+style_dos_textcolor=15
+pln Квадрат B5.
+pln Здесь находится штаб.
+instr Loc=B5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn shtab,Штаб.
+btn B4,Север.
+btn B6,Юг.
+btn A5,Запад.
+btn C5,Восток.
+end
+
+:B6
+cls
+style_dos_textcolor=15
+pln Квадрат B6.
+pln Вокруг находятся постройки твоей части.
+instr Loc=B6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn B5,Север.
+btn A6,Запад.
+btn C6,Восток.
+end
+
+:C1
+cls
+style_dos_textcolor=15
+pln Квадрат C1.
+pln Здесь находятся душевые и туалет.
+instr Loc=C1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn san,Сан узел.
+btn C2,Юг.
+btn B1,Запад.
+btn D1,Восток.
+end
+
+:C2
+cls
+style_dos_textcolor=15
+pln Квадрат C2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=C2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn C1,Север.
+btn C3,Юг.
+btn B2,Запад.
+btn D2,Восток.
+end
+
+:C3
+cls
+style_dos_textcolor=15
+pln Квадрат C3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=C3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn C2,Север.
+btn C4,Юг.
+btn B3,Запад.
+btn D3,Восток.
+end
+
+:C4
+cls
+style_dos_textcolor=15
+pln Квадрат C4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=C4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn C3,Север.
+btn C5,Юг.
+btn B4,Запад.
+btn D4,Восток.
+end
+
+:C5
+cls
+style_dos_textcolor=15
+pln Квадрат C5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=C5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn C4,Север.
+btn C6,Юг.
+btn B5,Запад.
+btn D5,Восток.
+end
+
+:C6
+cls
+style_dos_textcolor=15
+pln Квадрат C6.
+pln Здесь находится столовая.
+instr Loc=C6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn stol,Столовая.
+btn C5,Север.
+btn B6,Запад.
+btn D6,Восток.
+end
+
+:D1
+cls
+style_dos_textcolor=15
+pln Квадрат D1.
+pln Здесь находится котельная.
+instr Loc=D1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn kotel,Котельная.
+btn D2,Юг.
+btn C1,Запад.
+btn E1,Восток.
+end
+
+:D2
+cls
+style_dos_textcolor=15
+pln Квадрат D2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=D2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn D1,Север.
+btn D3,Юг.
+btn C2,Запад.
+btn E2,Восток.
+end
+
+:D3
+cls
+style_dos_textcolor=15
+pln Квадрат D3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=D3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn D2,Север.
+btn D4,Юг.
+btn C3,Запад.
+btn E3,Восток.
+end
+
+:D4
+cls
+style_dos_textcolor=15
+pln Квадрат D4.
+pln Здесь находится бункер.
+instr Loc=D4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn bunker,Бункер.
+btn D3,Север.
+btn D5,Юг.
+btn C4,Запад.
+btn E4,Восток.
+end
+
+:D5
+cls
+style_dos_textcolor=15
+pln Квадрат D5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=D5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn D4,Север.
+btn D6,Юг.
+btn C5,Запад.
+btn E5,Восток.
+end
+
+:D6
+cls
+style_dos_textcolor=15
+pln Квадрат D6.
+pln Вокруг находятся постройки твоей части.
+instr Loc=D6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn D5,Север.
+btn C6,Запад.
+btn E6,Восток.
+end
+
+:E1
+cls
+style_dos_textcolor=15
+pln Квадрат E1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E2,Юг.
+btn D1,Запад.
+btn F1,Восток.
+end
+
+:E2
+cls
+style_dos_textcolor=15
+pln Квадрат E2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E1,Север.
+btn E3,Юг.
+btn D2,Запад.
+btn F2,Восток.
+end
+
+:E3
+cls
+style_dos_textcolor=15
+pln Квадрат E3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E2,Север.
+btn E4,Юг.
+btn D3,Запад.
+btn F3,Восток.
+end
+
+:E4
+cls
+style_dos_textcolor=15
+pln Квадрат E4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E3,Север.
+btn E5,Юг.
+btn D4,Запад.
+btn F4,Восток.
+end
+
+:E5
+cls
+style_dos_textcolor=15
+pln Квадрат E5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E4,Север.
+btn E5,Юг.
+btn D5,Запад.
+btn F5,Восток.
+end
+
+:E6
+cls
+style_dos_textcolor=15
+pln Квадрат E6.
+pln Вокруг находятся постройки твоей части.
+instr Loc=E6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn E5,Север.
+btn D6,Запад.
+btn F6,Восток.
+end
+
+:F1
+cls
+style_dos_textcolor=15
+pln Квадрат F1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=F1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn F2,Юг.
+btn E1,Запад.
+btn G1,Восток.
+end
+
+:F2
+cls
+style_dos_textcolor=15
+pln Квадрат F1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=F2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn F1,Север.
+btn F3,Юг.
+btn E2,Запад.
+btn G2,Восток.
+end
+
+:F3
+cls
+style_dos_textcolor=15
+pln Квадрат F3.
+pln Здесь находятся казармы.
+instr Loc=F3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn kazarma,Казармы.
+btn F2,Север.
+btn F4,Юг.
+btn E3,Запад.
+btn G3,Восток.
+end
+
+:F4
+cls
+style_dos_textcolor=15
+pln Квадрат F4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=F4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn F3,Север.
+btn F5,Юг.
+btn E4,Запад.
+btn G4,Восток.
+end
+
+:F5
+cls
+style_dos_textcolor=15
+pln Квадрат F5.
+pln Здесь находится склад.
+instr Loc=F5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn sklad,Склад.
+btn F4,Север.
+btn F6,Юг.
+btn E5,Запад.
+btn G5,Восток.
+end
+
+:F6
+cls
+style_dos_textcolor=15
+pln Квадрат F6.
+pln Вокруг находятся постройки твоей части.
+instr Loc=F6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn F5,Север.
+btn E6,Запад.
+btn G6,Восток.
+end
+
+:G1
+cls
+style_dos_textcolor=15
+pln Квадрат G1.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G2,Юг.
+btn F1,Запад.
+btn H1,Восток.
+end
+
+:G2
+cls
+style_dos_textcolor=15
+pln Квадрат G2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G1,Север.
+btn G3,Юг.
+btn F2,Запад.
+btn H2,Восток.
+end
+
+:G3
+cls
+style_dos_textcolor=15
+pln Квадрат G3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G2,Север.
+btn G4,Юг.
+btn F3,Запад.
+btn H3,Восток.
+end
+
+:G4
+cls
+style_dos_textcolor=15
+pln Квадрат G4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G3,Север.
+btn G5,Юг.
+btn F4,Запад.
+btn H4,Восток.
+end
+
+:G5
+cls
+style_dos_textcolor=15
+pln Квадрат G5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G4,Север.
+btn G6,Юг.
+btn F5,Запад.
+btn H5,Восток.
+end
+
+:G6
+cls
+style_dos_textcolor=15
+pln Квадрат G6.
+pln Вокруг находятся постройки твоей части.
+instr Loc=G6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn G5,Север.
+btn F6,Запад.
+btn H6,Восток.
+end
+
+:H1
+cls
+style_dos_textcolor=15
+pln Квадрат H1.
+pln Здесь находится вертолетная площадка.
+instr Loc=H1
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn ploshadka,Вертолетная площадка.
+btn H2,Юг.
+btn G1,Запад.
+end
+
+:H2
+cls
+style_dos_textcolor=15
+pln Квадрат H2.
+pln Вокруг находятся постройки твоей части.
+instr Loc=H2
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn H1,Север.
+btn H3,Юг.
+btn G2,Запад.
+end
+
+:H3
+cls
+style_dos_textcolor=15
+pln Квадрат H3.
+pln Вокруг находятся постройки твоей части.
+instr Loc=H3
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn H2,Север.
+btn H4,Юг.
+btn G3,Запад.
+end
+
+:H4
+cls
+style_dos_textcolor=15
+pln Квадрат H4.
+pln Вокруг находятся постройки твоей части.
+instr Loc=H4
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn H3,Север.
+btn H5,Юг.
+btn G4,Запад.
+end
+
+:H5
+cls
+style_dos_textcolor=15
+pln Квадрат H5.
+pln Вокруг находятся постройки твоей части.
+instr Loc=H5
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn H4,Север.
+btn H6,Юг.
+btn G5,Запад.
+end
+
+:H6
+cls
+style_dos_textcolor=15
+pln Квадрат H6.
+pln Здесь находятся цистерны с горючим.
+instr Loc=H6
+чикарандом= rnd15
+if чикарандом=7 then goto Ворон
+if чикарандом=8 then goto Змея
+if чикарандом=9 then goto Собака
+if чикарандом=10 then goto Зомби1
+if чикарандом=11 then goto Зомби2
+btn cist,Цистерны.
+btn H5,Север.
+btn G6,Запад.
+end
+
+;===========================================================================================================================================================
+
+:Ворон
+instr enemyname=Ворон
+enemy=1
+enemyhealth=10
+goto boy
+end
+
+:Змея
+instr enemyname=Змея
+enemy=2
+enemyhealth=20
+goto boy
+end
+
+:Собака
+instr enemyname=Собака
+enemy=3
+enemyhealth=30
+goto boy
+end
+
+:Зомби1
+instr enemyname=Зомби
+enemy=4
+enemyhealth=40
+goto boy
+end
+
+:Зомби2
+instr enemyname=Зомби
+enemy=5
+enemyhealth=50
+goto boy
+end
+
+;===========================================================================================================================================================
+
+:boy
+cls
+if enemy=0 then goto #%Loс$
+proc status
+pln #enemyname$ нападает на тебя! Что делать?
+;if myweapon<3 then btn fight,Ударить.
+;if myweapon>2 then btn fight,Стрелять.
+btn fight,Атаковать.
+btn pobeg,Бежать.
+end
+
+:fight
+;урон от игрока
+чикарандом= rnd10
+if myweapon=0 then damage=0+чикарандом
+if myweapon=1 then damage=5+чикарандом
+if myweapon=2 then damage=10+чикарандом
+if myweapon=3 then damage=20+чикарандом
+if myweapon=4 then damage=40+чикарандом
+if myweapon=5 then damage=60+чикарандом
+if myweapon=0 then pln #enemyname$ прямо перед тобой. Ты бьешь кулаками и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage
+if myweapon=1 then pln #enemyname$ прямо перед тобой. Ты бьешь ножом и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage
+if myweapon=2 then pln #enemyname$ прямо перед тобой. Ты бьешь дубинкой и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage
+if myweapon=3 and patron3>0 then pln #enemyname$ прямо перед тобой. Ты стреляешь из револьвера и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage & patron3=patron3-1
+if myweapon=4 and patron4>0 then pln #enemyname$ прямо перед тобой. Ты стреляешь из пистолета и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage & patron4=patron4-1
+if myweapon=5 and patron5>0 then pln #enemyname$ прямо перед тобой. Ты стреляешь из дробовика и ранишь врага на #damage$. & enemyhealth=enemyhealth-damage & patron5=patron5-1
+if myweapon=3 and patron3<1 then pln У тебя закончились патроны в револьвере. 
+if myweapon=4 and patron4<1 then pln У тебя закончились патроны в пистолете.
+if myweapon=5 and patron5<1 then pln У тебя закончились патроны в дробовике.
+
+if enemyhealth<1 then pln Враг мертв. Ты его убил. & enemy=0 & pause 2000 & goto #%Loc$
+
+;урон от врага
+чикарандом= rnd10
+if enemy=1 then enemydamage=0+чикарандом
+if enemy=2 then enemydamage=5+чикарандом
+if enemy=3 then enemydamage=10+чикарандом
+if enemy=4 then enemydamage=15+чикарандом
+if enemy=5 then enemydamage=20+чикарандом
+if enemy=6 then enemydamage=25+чикарандом
+
+if bronik>0 then bronik=bronik-#enemydamage$
+if bronik<1 then health=health-#enemydamage$
+
+if enemy>0 then pln #enemyname$ атакует тебя и ранит на #enemydamage$.
+
+if health<1 then pln #enemyname$ убивает тебя. & pause 2000 & goto die
+pause 2000
+goto boy
+end
+
+:status
+style_dos_textcolor=10 ;красный
+p #health$ +   
+style_dos_textcolor=6 ;хаки
+p #bronik$ U   
+style_dos_textcolor=15 ;белый
+if myweapon=0 then pln Кулаки
+if myweapon=1 then pln Нож
+if myweapon=2 then pln Бита
+if myweapon=3 then pln Револьвер (#patron3$/#magazin3$)
+if myweapon=4 then pln Пистолет (#patron4$/#magazin4$)
+if myweapon=5 then pln Дробовик (#patron5$/#magazin5$)
+style_dos_textcolor=12 ;синий
+pln #enemyhealth$ + 
+style_dos_textcolor=15
+end
+
+:pobeg
+чикарандом = rnd5
+if чикарандом=1 and enemy=1 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=3 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=4 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=2 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=2 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=4 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=3 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=3 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=5 and enemy=4 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=5 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+
+end
+
+
+:pobeg2
+чикарандом = rnd5
+if чикарандом=1 and enemy=1 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=3 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=4 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=1 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=2 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=2 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=4 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=2 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=3 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=3 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+if чикарандом=5 and enemy=3 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=4 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=5 and enemy=4 then enemy=0 & pln Тебе удалось сбежать. & pause 2000 & goto #Loc$
+
+if чикарандом=1 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=2 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=3 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=4 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+if чикарандом=5 and enemy=5 then pln Тебе не удалось сбежать. & pause 2000 & goto boy 
+
+end
+
+;===========================================================================================================================================================
+:Use_Здоровье
+pln У тебя #health$ процентов здоровья.
+end
+
+:Use_Нож
+pln Армейский нож. Наносит урон от 5 до 15.
+end
+
+:Use_Бита
+pln Бейсбольная бита. Наносит урон от 10 до 20.
+end
+
+:Use_Револьвер(9мм)
+pln Семизарядный револьвер. Используюся патроны калибра 9 мм. Сейчас  у тебя в револьвере #patron3$ патронов. Наносит урон от 20 до 30.
+end
+
+:Use_Пистолет(11.2мм)
+pln Шестизарядный пистолет. Используюся патроны калибра 11.2 мм. Сейчас  у тебя в пистолете #patron4$ патронов.Наносит урон от 40 до 50.
+end
+
+:Use_Дробовик(16мм)
+pln Двузарядный дробовик. Используюся патроны калибра 16 мм. Сейчас  у тебя в дробовике #patron5$ патрон(а). Наносит урон от 60 до 70.
+end
+
+:Use_Бронежилет
+pln Военный бронежилет. Защищает от ударов и выстрелов. Он цел на #bronik$ процентов.
+end
+
+:Use_Спрей
+pln Спрей первой помощи. Восстанавливает здоровье на 25.
+end
+
+:Use_Аптечка
+pln Медецинская аптечка. Полностью восстанавливает здоровье.
+end
+
+:Use_Блокнот
+pln Обычный блокнот. В него можно что-нибудь записать. Осталось #bloknot$ неисписанных страниц. 
+end
+
+:Use_Патроны_9мм
+pln Патроны калибра 9 мм. Используются для револьвера. Сейчас у тебя #magazin3$ патронов в запасе.
+end
+
+:Use_Патроны_11.2мм
+pln Патроны калибра 11.2 мм. Используются для пистолета. Сейчас у тебя #magazin4$ патронов в запасе.
+end
+
+:Use_Патроны_16мм
+pln Патроны калибра 16 мм. Используются для дробовика. Сейчас у тебя #magazin5$ патронов в запасе.
+end
+
+:Use_Карта
+pln План части. По ней легко можно определить свое местоположение.
+image="map.jpg"
+end
+
+:Use_Канистра
+pln Пустая канистра, в которую обычно заливают горючее.
+end
+
+:Use_Канистра_с_горючим
+pln Канистра, которую ты залил горючим.
+end
+
+:Use_Нож_Вооружиться
+myweapon=1
+pln Ты берешь в руки нож.
+end
+
+:Use_Бита_Вооружиться
+myweapon=2
+pln Ты берешь в руки дубинку.
+end
+
+:Use_Револьвер(9мм)_Вооружиться
+myweapon=3
+pln Ты берешь в руки револьвер.
+end
+
+:Use_Пистолет(11.2мм)_Вооружиться
+myweapon=4
+pln Ты берешь в руки пистолет.
+end
+
+:Use_Дробовик(16мм)_Вооружиться
+myweapon=5
+pln Ты берешь в руки дробовик.
+end
+
+:Use_Патроны_9мм_Зарядить
+if weapon3=0 then pln у тебя нет подходящего оружия & end
+patron3=7
+magazin3=magazin3-7
+inv- 7, Патроны_9мм
+if magazin3<0 then magazin3=0
+pln Ты перезаряжаешь свой револьвер.
+end
+
+:Use_Патроны_11.2мм_Зарядить
+if weapon4=0 then pln у тебя нет подходящего оружия & end
+patron4=6
+magazin4=magazin4-6
+if magazin4<0 then magazin4=0
+inv- 6, Патроны_11.2мм
+pln Ты перезаряжаешь свой пистолет.
+end
+
+:Use_Патроны_16мм_Зарядить
+if weapon5=0 then pln у тебя нет подходящего оружия & end
+patron5=2
+magazin5=magazin5-2
+if magazin5<0 then magazin5=0
+inv- 2, Патроны_16мм
+pln Ты перезаряжаешь свой дробовик.
+end
+
+:Use_Спрей_Использовать
+health=health+25
+inv- спрей
+spray=spray-1
+if health>100 then health=100
+pln Ты используешь спрей первой помощи.
+end
+
+:Use_Аптечка_Использовать
+health=100
+inv- аптечка
+aptechka=aptechka-1
+pln Ты используешь аптечку.
+end
+
+:Use_Блокнот_Использовать
+if bloknot<1 then pln В блокноте больше нет неисписанных страниц.
+if bloknot>0 then bloknot=bloknot-1 & pln Ты делаешь запись в блокноте. & goto save
+end
+
+:Use_Канистра_с_горючим_Заправить
+if Loc=ploshadka then Ты заправляешь вертолет горючим. & zapravil=1 & inv- Канистра_с_горючим else Глупо выливать горючее себе под ноги, когда кругом огонь.
+end
+
+:save
+save #%Loc$
+goto #%Loc$
+end
+
+:die
+cls
+pln Ты умер.
+btn kontakt,Главное меню.
+end
+
+:finish
+end
+end
