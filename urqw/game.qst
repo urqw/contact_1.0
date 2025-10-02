@@ -2,7 +2,7 @@
 cls
 invkill
 perkill
-Style_BackColor=1
+Style_BackColor="#000000"
 style_dos_textcolor=15
 
 health=100
