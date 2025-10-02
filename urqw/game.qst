@@ -32,7 +32,7 @@ end
 
 :start
 cls
-pln Контакт 1.0. Вторжение.
+pln Контакт 1.0: Вторжение
 pln #/$
 pln #/$
 pln #/$
@@ -174,7 +174,7 @@ end
 a3=1
 cls
 instr Loc=kotel
-if par=0 then pln   Это котельная. Труба перебита и все котельная в густом обжигающем паре. & health=health-10
+if par=0 then pln   Это котельная. Труба перебита, и вся котельная в густом обжигающем паре. & health=health-10
 if par=1 then pln   Это котельная. Труба перебита, но так как ты перекрыл вентиль, то тебя больше не обжигает паром.
 if kotpist=0 and par=1 then btn kotpist1,Взять пистолет. 
 btn D1,Выйти на улицу.
@@ -468,7 +468,7 @@ end
 :A1
 cls
 style_dos_textcolor=15
-pln Квадрат А1.
+pln Квадрат A1.
 pln Вокруг находятся постройки твоей части.
 instr Loc=A1
 чикарандом= rnd15
@@ -484,7 +484,7 @@ end
 :A2
 cls
 style_dos_textcolor=15
-pln Квадрат А2.
+pln Квадрат A2.
 pln Здесь находится проходная.
 instr Loc=A2
 чикарандом= rnd15
@@ -502,7 +502,7 @@ end
 :A3
 cls
 style_dos_textcolor=15
-pln Квадрат А3.
+pln Квадрат A3.
 pln Вокруг находятся постройки твоей части.
 instr Loc=A3
 чикарандом= rnd15
@@ -519,7 +519,7 @@ end
 :A4
 cls
 style_dos_textcolor=15
-pln Квадрат А4.
+pln Квадрат A4.
 pln Здесь находится гараж.
 instr Loc=A4
 чикарандом= rnd15
@@ -537,7 +537,7 @@ end
 :A5
 cls
 style_dos_textcolor=15
-pln Квадрат А5.
+pln Квадрат A5.
 pln Вокруг находятся постройки твоей части.
 instr Loc=A5
 чикарандом= rnd15
@@ -554,7 +554,7 @@ end
 :A6
 cls
 style_dos_textcolor=15
-pln Квадрат А6.
+pln Квадрат A6.
 pln Здесь находится госпиталь.
 instr Loc=A6
 чикарандом= rnd15
@@ -1018,7 +1018,7 @@ end
 :F2
 cls
 style_dos_textcolor=15
-pln Квадрат F1.
+pln Квадрат F2.
 pln Вокруг находятся постройки твоей части.
 instr Loc=F2
 чикарандом= rnd15
