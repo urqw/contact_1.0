@@ -1669,5 +1669,5 @@ btn kontakt,Главное меню.
 end
 
 :finish
-end
+quit
 end
