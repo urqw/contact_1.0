@@ -4,7 +4,7 @@ Text-based game "Contact 1.0: Invasion" (Russian: "Контакт 1.0: Втор�
 
 The game is in Russian, developed for AkURQ, and adapted for [UrqW](https://github.com/urqw/UrqW) text-based game engine.
 
-This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/#contact_1.0).
+This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/?id=contact_1.0).
 
 The game was first published on February 22, 2010.
 
